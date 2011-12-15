@@ -2246,7 +2246,7 @@ public class JavaParser extends Parser {
                 case 1 :
                     // Java.g:295:9: genericMethodOrConstructorDecl
                     {
-                    Info info = new Info(this.fileNameAbsPath, input.get(input.index()).getText());
+                    MethodInfo info = new MethodInfo(this.fileNameAbsPath, input.get(input.index()).getText());
                     currentInfos.add(info);
                     
                     pushFollow(FOLLOW_genericMethodOrConstructorDecl_in_memberDecl956);
@@ -2274,7 +2274,7 @@ public class JavaParser extends Parser {
                         
                     match(input,47,FOLLOW_47_in_memberDecl976); if (state.failed) return ;
                     
-                    Info info = new Info(this.fileNameAbsPath, input.get(input.index()).getText());
+                    MethodInfo info = new MethodInfo(this.fileNameAbsPath, input.get(input.index()).getText());
                     currentInfos.add(info);
                     
                     match(input,Identifier,FOLLOW_Identifier_in_memberDecl978); if (state.failed) return ;
@@ -2291,7 +2291,7 @@ public class JavaParser extends Parser {
                     {
 
                     
-                    Info info = new Info(this.fileNameAbsPath, input.get(input.index()).getText());
+                    MethodInfo info = new MethodInfo(this.fileNameAbsPath, input.get(input.index()).getText());
                     currentInfos.add(info);
                     
                     match(input,Identifier,FOLLOW_Identifier_in_memberDecl990); if (state.failed) return ;
@@ -2540,7 +2540,7 @@ public class JavaParser extends Parser {
 
                     }
                   
-                    Info info = new Info(this.fileNameAbsPath, input.get(input.index()).getText());
+                    MethodInfo info = new MethodInfo(this.fileNameAbsPath, input.get(input.index()).getText());
                     currentInfos.add(info);
                     
                     match(input,Identifier,FOLLOW_Identifier_in_genericMethodOrConstructorRest1095); if (state.failed) return ;
@@ -2588,7 +2588,7 @@ public class JavaParser extends Parser {
             // Java.g:317:5: ( Identifier methodDeclaratorRest )
             // Java.g:317:9: Identifier methodDeclaratorRest
             {
-            Info info = new Info(this.fileNameAbsPath, input.get(input.index()).getText());
+            MethodInfo info = new MethodInfo(this.fileNameAbsPath, input.get(input.index()).getText());
             currentInfos.add(info);
             match(input,Identifier,FOLLOW_Identifier_in_methodDeclaration1128); if (state.failed) return ;
             pushFollow(FOLLOW_methodDeclaratorRest_in_methodDeclaration1130);
@@ -4846,7 +4846,7 @@ public class JavaParser extends Parser {
     }
     // $ANTLR end "formalParameterDeclsRest"
 
-    public List<Info> lines = new ArrayList<Info>();
+    public List<MethodInfo> lines = new ArrayList<MethodInfo>();
     
     // $ANTLR start "methodBody"
     // Java.g:489:1: methodBody : block ;
@@ -4861,7 +4861,7 @@ public class JavaParser extends Parser {
             pushFollow(FOLLOW_block_in_methodBody2434);
             int endLine = block();
             
-            Info latestInfo = currentInfos.remove(currentInfos.size() - 1);
+            MethodInfo latestInfo = currentInfos.remove(currentInfos.size() - 1);
             latestInfo.line = endLine - startLine + 1; 
             lines.add(latestInfo);
             
@@ -14760,7 +14760,7 @@ public class JavaParser extends Parser {
     public static final BitSet FOLLOW_49_in_synpred262_Java5485 = new BitSet(new long[]{0x0000000000000002L});
 
 
-    private List<Info> currentInfos = new ArrayList<Info>();
+    private List<MethodInfo> currentInfos = new ArrayList<MethodInfo>();
 }
 
 

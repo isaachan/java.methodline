@@ -3,32 +3,36 @@ package com.thoughtworks.jsa;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.ANTLRFileStream;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LineOfMethodCounter {
 
-	public static void main(String[] args) throws Exception {
-		args = new String[] {"/home/isaac/zte/code/client/ZTE_HUB/src" };
+	private String[] excludes = new String[] {
+			"org.apache",
+			"org.de",
+			"org.jivesoftware", 
+			"org.kenai",
+			"org.novell",
+			"org.xbill",
+			
+			"java.net.sf.kraken",
+			"java.com.jivesoftware"
+		};
 
-		if (args.length != 1) {
-			System.err.println("Input dir.");
-			return;
-		}
-		
-		LineOfMethodCounter counter = new LineOfMethodCounter();
-		List<Info> results = new ArrayList<Info>();
-		counter.analysic(new File(args[0]), results);
-		
-		File resultFile = new File("/home/isaac/result.txt");
-//		resultFile.deleteOnExit();
-//		resultFile.createNewFile();
+	public void writeReport(List<MethodInfo> results, String reportFilePath) throws IOException {
+		File resultFile = new File(reportFilePath);
+		resultFile.delete();
+		resultFile.createNewFile();
 		FileWriter writer = new FileWriter(resultFile);
 		
-		for(Info f : results) {
+		MethodInfo[] sorted = this.sort(results);
+
+		for(MethodInfo f : sorted) {
 			writer.write(f.className + " " + f.methodName + ": " + f.line + "\n");
 		}
 		
@@ -36,20 +40,31 @@ public class LineOfMethodCounter {
 		writer.close();
 	}
 
-	public void analysic(File file, List<Info> results) throws Exception {
+	public List<MethodInfo> anaylsic(File file) throws Exception {
+		ArrayList<MethodInfo> results = new ArrayList<MethodInfo>();
+		analysic(file, results);
+		return results;
+	}
+	
+	public void analysic(File file, List<MethodInfo> results) throws Exception {
 		if (file.isDirectory()) {
 			for(File f: file.listFiles()) {
 				analysic(f, results);
 			}
 		} else {
-			if (file.getAbsolutePath().endsWith(".java")) {
-				List<Info> parseFile = parseFile(file.getAbsolutePath());
+			if (isValidFile(file)) {
+				List<MethodInfo> parseFile = parseFile(file.getAbsolutePath());
 				results.addAll(parseFile);
 			}
 		}
 	}
+
+	private boolean isValidFile(File file) {
+		String filePath = file.getAbsolutePath();
+		return filePath.endsWith(".java") && !new FileFilter(excludes).filter(filePath);
+	}
 	
-	public List<Info> parseFile(String f) throws Exception {
+	public List<MethodInfo> parseFile(String f) throws Exception {
 		JavaLexer lexer = new JavaLexer();
 		lexer.setCharStream(new ANTLRFileStream(f));
 		CommonTokenStream tokens = new CommonTokenStream();
@@ -61,6 +76,20 @@ public class LineOfMethodCounter {
 		
 		return parser.lines;
 	}
+
+	public MethodInfo[] sort(List<MethodInfo> arrayList) {
+		MethodInfo[] infos = new MethodInfo[arrayList.size()];
+		arrayList.toArray(infos);
+		Arrays.sort(infos);
+		return infos;
+	}
 	
 }
+
+
+
+
+
+
+
 
