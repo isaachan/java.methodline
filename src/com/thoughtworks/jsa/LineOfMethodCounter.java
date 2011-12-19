@@ -66,7 +66,8 @@ public class LineOfMethodCounter {
 	
 	public List<MethodInfo> parseFile(String f) throws Exception {
 		JavaLexer lexer = new JavaLexer();
-		lexer.setCharStream(new ANTLRFileStream(f));
+		
+		lexer.setCharStream(new ANTLRFileStream(f, "utf-8"));
 		CommonTokenStream tokens = new CommonTokenStream();
 		tokens.setTokenSource(lexer);
 		tokens.LT(1);

@@ -15,7 +15,7 @@ public class Main {
 
 		String srcFolder = args[0];
 		int threshod = Integer.parseInt(args[1]);
-		String reportFilePath = "method_lines_report.txt";
+		String reportFilePath = "method-lines-report-" + System.currentTimeMillis() + ".txt";
 		if (args.length == 3) reportFilePath = args[2];
 		
 		List<MethodInfo> results = counter.anaylsic(new File(srcFolder));

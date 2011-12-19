@@ -10,7 +10,7 @@ public class FileFilter {
 
 	public boolean filter(String f) {
 		for(String exclude : excludes) {
-			if (f.replace('/', '.').contains(exclude)) {
+			if (f.replace('/', '.').replace('\\', '.').contains(exclude)) {
 				return true;
 			}
 		}
