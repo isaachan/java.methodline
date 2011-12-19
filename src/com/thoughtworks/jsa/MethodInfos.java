@@ -2,6 +2,8 @@ package com.thoughtworks.jsa;
 
 import java.util.List;
 
+import com.thoughtworks.jsa.parser.MethodInfo;
+
 public class MethodInfos {
 
 	private final List<MethodInfo> infos;
@@ -13,7 +15,7 @@ public class MethodInfos {
 	public MethodInfo longest() {
 		MethodInfo theLongest = infos.get(0);
 		for(MethodInfo info : infos) {
-			if (theLongest.line < info.line) theLongest = info;
+			if (theLongest.lines < info.lines) theLongest = info;
 			
 		}
 		return theLongest;

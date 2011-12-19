@@ -3,6 +3,8 @@ package com.thoughtworks.jsa;
 import java.io.File;
 import java.util.List;
 
+import com.thoughtworks.jsa.parser.MethodInfo;
+
 public class Main {
 
 	public static void main(String[] args) throws Exception {
@@ -24,7 +26,7 @@ public class Main {
 		MethodInfo longest = new MethodInfos(results).longest();
 		System.out.println(longest);
 		
-		if (longest.line >= threshod) {
+		if (longest.lines >= threshod) {
 			System.exit(-1);
 		}
 	}

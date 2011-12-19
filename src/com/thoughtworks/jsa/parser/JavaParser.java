@@ -1,6 +1,8 @@
-package com.thoughtworks.jsa;
+package com.thoughtworks.jsa.parser;
 
 import org.antlr.runtime.*;
+
+
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
@@ -4862,7 +4864,7 @@ public class JavaParser extends Parser {
             int endLine = block();
             
             MethodInfo latestInfo = currentInfos.remove(currentInfos.size() - 1);
-            latestInfo.line = endLine - startLine + 1; 
+            latestInfo.lines = endLine - startLine + 1; 
             lines.add(latestInfo);
             
             state._fsp--;

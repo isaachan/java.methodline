@@ -3,6 +3,10 @@ package com.thoughtworks.jsa;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.ANTLRFileStream;
 
+import com.thoughtworks.jsa.parser.JavaLexer;
+import com.thoughtworks.jsa.parser.JavaParser;
+import com.thoughtworks.jsa.parser.MethodInfo;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -33,7 +37,7 @@ public class LineOfMethodCounter {
 		MethodInfo[] sorted = this.sort(results);
 
 		for(MethodInfo f : sorted) {
-			writer.write(f.className + " " + f.methodName + ": " + f.line + "\n");
+			writer.write(f.className + " " + f.methodName + ": " + f.lines + "\n");
 		}
 		
 		writer.flush();

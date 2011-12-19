@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.thoughtworks.jsa.MethodInfo;
+import com.thoughtworks.jsa.parser.MethodInfo;
 
 
 public class InfoTest {
@@ -20,7 +20,7 @@ public class InfoTest {
 
 	private MethodInfo createInfo(int line) {
 		MethodInfo info = new MethodInfo("", "");
-		info.line = line;
+		info.lines = line;
 		return info;
 	}
 }

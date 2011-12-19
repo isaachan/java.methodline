@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.thoughtworks.jsa.parser.MethodInfo;
+
 public class MethoInfosTest {
 
 	@Test
@@ -17,12 +19,12 @@ public class MethoInfosTest {
 		}};
 		
 		MethodInfo info = new MethodInfos(infos).longest();
-		assertEquals(6, info.line);
+		assertEquals(6, info.lines);
 	}
 	
 	private MethodInfo createInfo(int line) {
 		MethodInfo info = new MethodInfo("", "");
-		info.line = line;
+		info.lines = line;
 		return info;
 	}
 }

@@ -1,4 +1,4 @@
-package com.thoughtworks.jsa;
+package com.thoughtworks.jsa.parser;
 
 import org.antlr.runtime.*;
 import java.util.Stack;

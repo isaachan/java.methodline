@@ -1,24 +1,26 @@
-package com.thoughtworks.jsa;
+package com.thoughtworks.jsa.parser;
 
 public class MethodInfo implements Comparable<MethodInfo> {
+	
+	public String className;
+	public String methodName;
+	public int lines;
+	
 	public MethodInfo(String className, String methodName) {
 		this.className = className;
 		this.methodName = methodName;
 	}
-	public String className;
-	public String methodName;
-	public int line;
-	
+
 	@Override
 	public String toString() {
-		return className + " " + methodName + ": " + line;
+		return className + " " + methodName + ": " + lines;
 	}
 	
 	@Override
 	public int compareTo(MethodInfo another) {
-		if (this.line == another.line)
+		if (this.lines == another.lines)
 			return 0;
-		if (this.line > another.line) 
+		if (this.lines > another.lines) 
 			return -1;
 		return 1;
 	}
