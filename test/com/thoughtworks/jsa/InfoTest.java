@@ -14,8 +14,8 @@ public class InfoTest {
 		MethodInfo info2 = createInfo(3);
 		
 		assertEquals(0, info1.compareTo(info1));
-		assertEquals(-1, info1.compareTo(info2));
-		assertEquals(1, info2.compareTo(info1));
+		assertEquals(1, info1.compareTo(info2));
+		assertEquals(-1, info2.compareTo(info1));
 	}
 
 	private MethodInfo createInfo(int line) {

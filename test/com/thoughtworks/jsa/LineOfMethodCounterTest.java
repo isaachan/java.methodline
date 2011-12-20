@@ -13,7 +13,7 @@ public class LineOfMethodCounterTest {
 
 	@Test
 	public void sort_methodinfo_by_method_length() {
-		LineOfMethodCounter counter = new LineOfMethodCounter();
+		LineOfMethodCounter counter = new LineOfMethodCounter(new Configration(new String[]{}));
 		MethodInfo[] sorted = counter.sort(new ArrayList<MethodInfo>() {{
 			add(createMethodInfo(5));
 			add(createMethodInfo(5));
