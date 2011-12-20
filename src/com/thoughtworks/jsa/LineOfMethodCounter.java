@@ -17,17 +17,6 @@ import java.util.List;
 public class LineOfMethodCounter {
 
 	private String[] ignorePathes; 
-//	= new String[] {
-//			"org.apache",
-//			"org.de",
-//			"org.jivesoftware", 
-//			"org.kenai",
-//			"org.novell",
-//			"org.xbill",
-//			
-//			"java.net.sf.kraken",
-//			"java.com.jivesoftware"
-//		};
 	private final Configration config;
 
 	public LineOfMethodCounter(Configration config) {
@@ -36,7 +25,7 @@ public class LineOfMethodCounter {
 	}
 
 	public void writeReport(List<MethodInfo> results) throws IOException {
-		File resultFile = new File(this.config.reportName);
+		File resultFile = new File(this.config.reportName + "-" + System.currentTimeMillis());
 		resultFile.delete();
 		resultFile.createNewFile();
 		FileWriter writer = new FileWriter(resultFile);
